@@ -34,6 +34,15 @@ def get_transaction_details(transaction_id):
                     if key:
                         transaction_data[key] = value
 
+                #find all trs with three td children, the second child is the key and the third child is the value
+                if len(tds) == 3:
+                    key = tds[1].get_text(strip=True)
+                    value = tds[2].get_text(strip=True) if tds[2].get_text(strip=True) else None
+
+                    # If the key is not empty, add it to the dictionary
+                    if key:
+                        transaction_data[key] = value
+
             return transaction_data
         else:
             print(f"Error: Received status code {response.status_code}")
